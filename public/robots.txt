@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://coded24.github.io/sitemap-index.xml

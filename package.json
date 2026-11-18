@@ -1,0 +1,22 @@
+{
+  "name": "christopher-agbagba-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "prebuild": "node scripts/fetch-github.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check && npm test",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.5",
+    "astro": "^7.4.12"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, skills } from '../content/site';
+import { additionalProjects, featuredProjects } from '../content/projects';
+---
+
+<BaseLayout title={`CV · ${site.name}`} description={`${site.name} — ${site.role}. Printable curriculum vitae.`}>
+  <main class="cv-page">
+    <header class="cv-toolbar">
+      <a href="/" class="cv-back">← Portfolio</a>
+      <button class="button button-dark print-button" type="button" onclick="window.print()">Print / save as PDF</button>
+    </header>
+    <article class="cv-document">
+      <header class="cv-header">
+        <div>
+          <p class="eyebrow">CURRICULUM VITAE</p>
+          <h1>{site.name}</h1>
+          <p class="cv-role">{site.role}</p>
+        </div>
+        <address>
+          <span>{site.location}</span>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a>
+          <a href={site.github}>github.com/coded24</a>
+          <a href={site.linkedin}>LinkedIn profile</a>
+        </address>
+      </header>
+
+      <section class="cv-section">
+        <h2>Professional Summary</h2>
+        <p>Backend developer and Linux administrator with hands-on experience building automated data pipelines, web applications, and self-hosted infrastructure. Skilled in Python, PostgreSQL, and Linux service management, with a focus on systems that run reliably in production without manual supervision. Currently a student at Ho Technical University, available for remote full-time, contract, or short-term projects in GMT and UK / European time zones.</p>
+      </section>
+
+      <section class="cv-section">
+        <h2>Technical Skills</h2>
+        <div class="cv-skill-list">
+          {Object.entries(skills).map(([group, items]) => <p><strong>{group}:</strong> {items.join(', ')}</p>)}
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2>Experience</h2>
+        <div class="cv-entry">
+          <h3>Industrial Attachment Student <span>· Dekpor School Raspberry Pi Lab, Ghana</span></h3>
+          <ul><li>Worked on Raspberry Pi-based projects in a school computer lab environment as part of the Ho Technical University industrial attachment programme.</li><li>Documented weekly work in a structured industrial attachment logbook with four weekly entries.</li></ul>
+        </div>
+        <div class="cv-entry">
+          <h3>Freelance Backend Developer <span>· Remote</span></h3>
+          <ul><li>Build and deploy Python automation, web scraping, and database-backed systems for clients.</li><li>Set up and maintain Linux servers with systemd, secure remote access, and automated backups.</li><li>Develop full-stack web applications with React, Node.js, and relational databases.</li></ul>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2>Projects</h2>
+        {[...featuredProjects, ...additionalProjects].map((project) => (
+          <div class="cv-entry">
+            <h3>{project.title} <span>· {project.stack.join(', ')}</span></h3>
+            <p>{project.summary}</p>
+            <ul>{project.details.map((detail) => <li>{detail}</li>)}</ul>
+          </div>
+        ))}
+      </section>
+
+      <section class="cv-section cv-bottom">
+        <h2>Education & Availability</h2>
+        <p><strong>Ho Technical University (HTU)</strong> · Ghana</p>
+        <p>{site.availability}. Based in GMT, with full overlap with UK and European business hours.</p>
+      </section>
+    </article>
+  </main>
+</BaseLayout>
